@@ -8,7 +8,7 @@ import Playlist from './components/Playlist';
 function App() {
 	// url of database
 	// change url to deployed site //
-	const url = 'https://aa-tunr-backend.herokuapp.com';
+	const url = 'http://localhost:3000';
 	// empty song for create
 	const emptySong = {
 		title: '',
@@ -23,7 +23,7 @@ function App() {
 	// Function to Fetch songs
 	// match fetch to deployed data //
 	const getSongs = () => {
-		fetch(url + '/song/')
+		fetch(url + '/songs/')
 			.then((response) => response.json())
 			.then((data) => {
 				setSongs(data);
@@ -36,7 +36,7 @@ function App() {
 	// handleCreate for creating songs
 	const handleCreate = (newSong) => {
 		// match create with deployed data //
-		fetch(url + '/song/', {
+		fetch(url + '/songs/', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(newSong),
@@ -45,7 +45,7 @@ function App() {
 	//  handleUpdate to edit songs
 	const handleUpdate = (song) => {
 		// match create with deployed data //
-		fetch(url + '/song/' + song._id, {
+		fetch(url + '/songs/' + song.id, {
 			method: 'put',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(song),
@@ -53,7 +53,7 @@ function App() {
 	};
 	const removeSong = (song) => {
 		// match create with deployed data //
-		fetch(url + '/song/' + song._id, {
+		fetch(url + '/songs/' + song.id, {
 			method: 'delete',
 		}).then((response) => getSongs());
 	};
