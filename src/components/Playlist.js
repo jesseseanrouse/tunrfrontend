@@ -11,8 +11,8 @@ const Playlist = (props) => {
             <p>{song.artist}</p>
             <p>{song.time}</p>
             <p>{song.favorite}</p>
-
-            {song.favorite === true ?  <i className="far fa-heart"></i> : <i className="fas fa-heart"></i> }
+            <div onClick={() => {props.handleFav(song)}}>{song.favorite === true ?  <i className="far fa-heart"></i> : <i className="fas fa-heart"></i> }</div>
+            
             
             <button onClick={() => {
                 props.selectSong(song)       

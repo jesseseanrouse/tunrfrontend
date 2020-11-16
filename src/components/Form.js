@@ -21,8 +21,6 @@ const Form = (props) => {
     // onSubmit is an event listener - listening for a submit click
   return (
 		<div>
-			<h1>This is the form</h1>
-
 			<form onSubmit={handleSubmit}>
 				TITLE
 				<input

@@ -3,7 +3,7 @@ import './App.css';
 import Form from './components/Form';
 import { Route, Link, Switch } from 'react-router-dom';
 import Playlist from './components/Playlist';
-// import Favorites from './components/Favorites';
+import Favorite from './components/Favorite';
 
 function App() {
 	// url of database
@@ -41,7 +41,7 @@ function App() {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(newSong),
 		}).then((response) => getSongs());
-		setSelectedSong(emptySong)
+		setSelectedSong(emptySong);
 	};
 	//  handleUpdate to edit songs
 	const handleUpdate = (song) => {
@@ -63,9 +63,40 @@ function App() {
 		setSelectedSong(song);
 	};
 
-	const handleTest = () => {
-		console.log(selectedSong)
-	}
+	// Favorite Song
+	const handleFav = (song) => {
+		if (song.favorite === false) {
+			let favSongs = favorites
+			favSongs.push(song)
+			setFavorites(favSongs)
+			song.favorite = true
+			fetch(url + '/songs/' + song.id, {
+				method: 'put',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(song),
+			}).then((response) => getSongs());
+		} else {
+			let favSongs = favorites;
+			let i = 0
+			let index = -1
+			while (i < favSongs.length) {
+				if (favSongs[i].id === song.id) {
+					index = i
+				}
+				i++
+			}
+			if (index > -1) {
+				favSongs.splice(index, 1)
+			}
+			setFavorites(favSongs);
+			song.favorite = false;
+			fetch(url + '/songs/' + song.id, {
+				method: 'put',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(song),
+			}).then((response) => getSongs());
+		}
+	};
 	return (
 		<div className='App'>
 			<h1>TUNR.</h1>
@@ -82,7 +113,10 @@ function App() {
 								songs={songs}
 								selectSong={selectSong}
 								removeSong={removeSong}
+								handleFav={handleFav}
 							/>
+							<h3>Favorites</h3>
+							<Favorite favList={favorites} handle={handleFav} />
 							<Form
 								{...rp}
 								label='create'
@@ -103,7 +137,10 @@ function App() {
 								songs={songs}
 								selectSong={selectSong}
 								removeSong={removeSong}
+								handleFav={handleFav}
 							/>
+							<h3>Favorites</h3>
+							<Favorite favList={favorites} handle={handleFav} />
 							<Form
 								{...rp}
 								label='update'
@@ -111,7 +148,6 @@ function App() {
 								setSong={setSelectedSong}
 								handleSubmit={handleUpdate}
 							/>
-							<button onClick={handleTest}>test state</button>
 						</>
 					)}
 				/>
