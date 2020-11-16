@@ -116,7 +116,7 @@ function App() {
 								handleFav={handleFav}
 							/>
 							<h3>Favorites</h3>
-							<Favorite favList={favorites} handle={handleFav} />
+							<Favorite favList={favorites} handleFav={handleFav} />
 							<Form
 								{...rp}
 								label='create'
@@ -140,7 +140,7 @@ function App() {
 								handleFav={handleFav}
 							/>
 							<h3>Favorites</h3>
-							<Favorite favList={favorites} handle={handleFav} />
+							<Favorite favList={favorites} handleFav={handleFav} />
 							<Form
 								{...rp}
 								label='update'
