@@ -8,7 +8,7 @@ import Playlist from './components/Playlist';
 function App() {
 	// url of database
 	// change url to deployed site //
-	const url = 'http://localhost:3000';
+	const url = 'https://jrtunr.herokuapp.com';
 	// empty song for create
 	const emptySong = {
 		title: '',
@@ -41,6 +41,7 @@ function App() {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(newSong),
 		}).then((response) => getSongs());
+		setSelectedSong(emptySong)
 	};
 	//  handleUpdate to edit songs
 	const handleUpdate = (song) => {
@@ -50,6 +51,7 @@ function App() {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(song),
 		}).then((response) => getSongs());
+		setSelectedSong(emptySong);
 	};
 	const removeSong = (song) => {
 		// match create with deployed data //
@@ -60,28 +62,57 @@ function App() {
 	const selectSong = (song) => {
 		setSelectedSong(song);
 	};
+
+	const handleTest = () => {
+		console.log(selectedSong)
+	}
 	return (
 		<div className='App'>
 			<h1>TUNR.</h1>
 			<h6>FOR ALL YOUR PLAYLIST NEEDS</h6>
 			<hr />
-			<Playlist
-				// {...rp}
-				songs={songs}
-				selectSong={selectSong}
-				removeSong={removeSong}
-			/>
 			<Switch>
 				<Route
 					exact
 					path='/'
 					render={(rp) => (
-						<Form
-							{...rp}
-							label='create'
-							song={emptySong}
-							handleSubmit={handleCreate}
-						/>
+						<>
+							<Playlist
+								{...rp}
+								songs={songs}
+								selectSong={selectSong}
+								removeSong={removeSong}
+							/>
+							<Form
+								{...rp}
+								label='create'
+								song={selectedSong}
+								setSong={setSelectedSong}
+								handleSubmit={handleCreate}
+							/>
+						</>
+					)}
+				/>
+				<Route
+					exact
+					path='/edit'
+					render={(rp) => (
+						<>
+							<Playlist
+								{...rp}
+								songs={songs}
+								selectSong={selectSong}
+								removeSong={removeSong}
+							/>
+							<Form
+								{...rp}
+								label='update'
+								song={selectedSong}
+								setSong={setSelectedSong}
+								handleSubmit={handleUpdate}
+							/>
+							<button onClick={handleTest}>test state</button>
+						</>
 					)}
 				/>
 			</Switch>
