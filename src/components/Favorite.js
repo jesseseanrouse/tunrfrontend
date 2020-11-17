@@ -1,4 +1,8 @@
 import React from 'react';
+// import font awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// solid Star
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 
 const Favorite = (props) => {
 	const loaded = () => (
@@ -12,11 +16,7 @@ const Favorite = (props) => {
 						onClick={() => {
 							props.handleFav(song);
 						}}>
-						{song.favorite === true ? (
-							<i className='far fa-heart'></i>
-						) : (
-							<i className='fas fa-heart'></i>
-						)}
+						<FontAwesomeIcon icon={solidHeart} size='1x' />
 					</div>
 				</article>
 			))}
