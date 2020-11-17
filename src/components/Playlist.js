@@ -10,9 +10,9 @@ const Playlist = (props) => {
   const {songs} = props
 
   const loaded = () => (
-		<div>
+		<div className='SongList'>
 			{songs.map((song) => (
-				<article>
+				<article className='Song'>
 					<p>{song.title}</p>
 					<p>{song.artist}</p>
 					<p>{song.time}</p>

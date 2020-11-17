@@ -99,8 +99,10 @@ function App() {
 	};
 	return (
 		<div className='App'>
-			<h1>TUNR.</h1>
-			<h6>FOR ALL YOUR PLAYLIST NEEDS</h6>
+			<header>
+				<h1 className='Header'>TUNR.</h1>
+				<h6 className='Header2'>FOR ALL YOUR PLAYLIST NEEDS</h6>
+			</header>
 			<hr />
 			<Switch>
 				<Route
@@ -115,7 +117,7 @@ function App() {
 								removeSong={removeSong}
 								handleFav={handleFav}
 							/>
-							<h3>Favorites</h3>
+							<h3 className='FavHeader'>Favorites</h3>
 							<Favorite favList={favorites} handleFav={handleFav} />
 							<Form
 								{...rp}
