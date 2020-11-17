@@ -66,10 +66,10 @@ function App() {
 	// Favorite Song
 	const handleFav = (song) => {
 		if (song.favorite === false) {
-			let favSongs = favorites
-			favSongs.push(song)
-			setFavorites(favSongs)
-			song.favorite = true
+			let favSongs = favorites;
+			favSongs.push(song);
+			setFavorites(favSongs);
+			song.favorite = true;
 			fetch(url + '/songs/' + song.id, {
 				method: 'put',
 				headers: { 'Content-Type': 'application/json' },
@@ -77,16 +77,16 @@ function App() {
 			}).then((response) => getSongs());
 		} else {
 			let favSongs = favorites;
-			let i = 0
-			let index = -1
+			let i = 0;
+			let index = -1;
 			while (i < favSongs.length) {
 				if (favSongs[i].id === song.id) {
-					index = i
+					index = i;
 				}
-				i++
+				i++;
 			}
 			if (index > -1) {
-				favSongs.splice(index, 1)
+				favSongs.splice(index, 1);
 			}
 			setFavorites(favSongs);
 			song.favorite = false;
@@ -95,6 +95,12 @@ function App() {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(song),
 			}).then((response) => getSongs());
+		}
+		let favDisplay = document.getElementById('FavHeader');
+		if (favorites.length === 0) {
+			favDisplay.style.display = 'none';
+		} else {
+			favDisplay.style.display = 'block';
 		}
 	};
 	return (
@@ -110,6 +116,7 @@ function App() {
 					path='/'
 					render={(rp) => (
 						<>
+							<h3 className='PlaylistHeader'>Playlist</h3>
 							<Playlist
 								{...rp}
 								songs={songs}
@@ -117,7 +124,7 @@ function App() {
 								removeSong={removeSong}
 								handleFav={handleFav}
 							/>
-							<h3 className='FavHeader'>Favorites</h3>
+							<h3 id='FavHeader'>Favorites</h3>
 							<Favorite favList={favorites} handleFav={handleFav} />
 							<Form
 								{...rp}
@@ -134,6 +141,7 @@ function App() {
 					path='/edit'
 					render={(rp) => (
 						<>
+							<h3 className='PlaylistHeader'>Playlist</h3>
 							<Playlist
 								{...rp}
 								songs={songs}
@@ -141,7 +149,7 @@ function App() {
 								removeSong={removeSong}
 								handleFav={handleFav}
 							/>
-							<h3>Favorites</h3>
+							<h3 id='FavHeader'>Favorites</h3>
 							<Favorite favList={favorites} handleFav={handleFav} />
 							<Form
 								{...rp}

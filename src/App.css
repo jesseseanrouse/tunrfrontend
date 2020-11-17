@@ -24,9 +24,12 @@
 .Song {
   padding: 10px
 }
+.PlaylistHeader {
+  padding: 20px 0px 0px 0px;
+}
 
 /* Favorites */
-.FavHeader {
+#FavHeader {
   display: none;
 }
 
