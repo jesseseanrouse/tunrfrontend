@@ -13,22 +13,23 @@ const Playlist = (props) => {
 		<div className='SongList'>
 			{songs.map((song) => (
 				<article className='Song'>
-					<p>{song.title}</p>
-					<p>{song.artist}</p>
-					<p>{song.time}</p>
-					<p>{song.favorite}</p>
+					<p className='A'>{song.title}</p>
+					<p className='B'>{song.artist}</p>
+					<p className='C'>{song.time}</p>
 					<div
+						className='D'
 						onClick={() => {
 							props.handleFav(song);
 						}}>
 						{song.favorite === true ? (
 							<FontAwesomeIcon icon={solidHeart} size='1x' />
 						) : (
-							<FontAwesomeIcon icon={holyHeart} size="1x" />
+							<FontAwesomeIcon icon={holyHeart} size='1x' />
 						)}
 					</div>
 
 					<button
+						className='E'
 						onClick={() => {
 							props.selectSong(song);
 							props.history.push('/edit');
@@ -37,6 +38,7 @@ const Playlist = (props) => {
 					</button>
 
 					<button
+						className='F'
 						onClick={() => {
 							props.removeSong(song);
 						}}>

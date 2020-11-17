@@ -9,10 +9,10 @@ const Favorite = (props) => {
 		<div className='SongList'>
 			{props.favList.map((song) => (
 				<article className='Song'>
-					<p>{song.title}</p>
-					<p>{song.artist}</p>
-					<p>{song.time}</p>
-					<div
+					<p className='A'>{song.title}</p>
+					<p className='B'>{song.artist}</p>
+					<p className='C'>{song.time}</p>
+					<div className='D'
 						onClick={() => {
 							props.handleFav(song);
 						}}>

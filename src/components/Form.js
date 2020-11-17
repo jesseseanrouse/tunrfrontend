@@ -22,8 +22,8 @@ const Form = (props) => {
 		<div className='InputsForm'>
 			<form onSubmit={handleSubmit}>
 				<div className='GridForm'>
-					<div>TITLE</div>
-					<div>
+					<div className='FormTitle'>TITLE</div>
+					<div className='InputForm'>
 						<input
 							type='text'
 							name='title'
@@ -31,8 +31,8 @@ const Form = (props) => {
 							onChange={handleChange}
 						/>
 					</div>
-					<div>ARTIST</div>
-					<div>
+					<div className='FormTitle'>ARTIST</div>
+					<div className='InputForm'>
 						<input
 							type='text'
 							name='artist'
@@ -40,8 +40,8 @@ const Form = (props) => {
 							onChange={handleChange}
 						/>
 					</div>
-					<div>TIME</div>
-					<div>
+					<div className='FormTitle'>TIME</div>
+					<div className='InputForm'>
 						<input
 							type='text'
 							name='time'

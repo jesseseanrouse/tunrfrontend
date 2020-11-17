@@ -126,6 +126,7 @@ function App() {
 							/>
 							<h3 id='FavHeader'>Favorites</h3>
 							<Favorite favList={favorites} handleFav={handleFav} />
+							<h3 className='FormHeader'>Add Song</h3>
 							<Form
 								{...rp}
 								label='create'
@@ -151,6 +152,7 @@ function App() {
 							/>
 							<h3 id='FavHeader'>Favorites</h3>
 							<Favorite favList={favorites} handleFav={handleFav} />
+							<h3 className='FormHeader'>Edit Song</h3>
 							<Form
 								{...rp}
 								label='update'
